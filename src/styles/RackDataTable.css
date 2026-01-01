@@ -1,0 +1,22 @@
+.rack-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.rack-table th {
+  /* background: #f0f2f5; */
+  font-weight: 600;
+  padding: 6px;
+  border-bottom: 1px solid #ccc;
+}
+
+.rack-table td {
+  padding: 6px;
+  border-bottom: 1px solid #eee;
+  text-align: center;
+}
+
+.rack-table tr:hover {
+  background: #4bbff4;
+}

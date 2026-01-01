@@ -1,0 +1,28 @@
+.log-container {
+  max-height: 600px;        /* chiều cao cố định */
+  overflow-y: auto;         /* scroll dọc */
+  border: 1px solid #ddd;
+  border-radius: 6px;
+}
+
+.log-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 900px;         /* ép bảng rộng */
+}
+
+.log-table th,
+.log-table td {
+  padding: 8px 12px;
+  font-size: 13px;
+  border-bottom: 1px solid #eee;
+  text-align: center;
+  white-space: nowrap;     /* KHÔNG xuống dòng */
+}
+
+.log-table thead th {
+  position: sticky;        /* header cố định */
+  top: 0;
+  background: #1e8dac;
+  z-index: 1;
+}

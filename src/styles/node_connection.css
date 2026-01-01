@@ -1,0 +1,79 @@
+/* DB */
+.db {
+  position: absolute;
+  width: 120px;
+  height: 60px;
+  background: #1e293b;
+  border-radius: 8px;
+  color: #fff;
+  cursor: pointer;
+  border: 2px solid transparent;
+}
+
+.db.selected {
+  border-color: #38bdf8;
+}
+
+/* Rack */
+.rack {
+  position: absolute;
+  width: 90px;
+  height: 40px;
+  background: #020617;
+  border-radius: 6px;
+  color: #e5e7eb;
+  font-size: 12px;
+  text-align: center;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 6px 4px;
+  box-shadow: 0 0 6px rgba(0,0,0,0.6);
+}
+
+.rack-name {
+  font-weight: 600;
+}
+
+.rack-current {
+  font-size: 13px;
+  font-weight: bold;
+}
+
+/* Status */
+.rack.normal {
+  border: 2px solid #22c55e;
+}
+
+.rack.warning {
+  border: 2px solid #facc15;
+}
+
+.rack.error {
+  border: 2px solid #ef4444;
+}
+
+/* Hover */
+.rack:hover {
+  transform: scale(1.05);
+  z-index: 10;
+}
+
+
+/* SVG */
+.connection-line {
+  position: absolute;
+  inset: 0;
+  pointer-events: none; /* không cản click */
+  z-index: 4;
+    width: 100%;
+  height: 100%;
+}
+
+.db,
+.rack {
+  position: absolute;
+  z-index: 2;
+}
+
