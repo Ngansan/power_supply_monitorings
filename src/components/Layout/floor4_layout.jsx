@@ -1,27 +1,3 @@
-// export const floor4Nodes = [
-//   // DB
-//   { id: "DB1", type: "db", position: { x: 0, y: 120 }, data: { name: "A-1" } },
-//   { id: "DB2", type: "db", position: { x: 0, y: 190 }, data: { name: "A-2" } },
-//   { id: "DB3", type: "db", position: { x: 0, y: 260 }, data: { name: "A-3" } },
-//   { id: "DB4", type: "db", position: { x: 0, y: 330 }, data: { name: "A-4" } },
-//   { id: "DB5", type: "db", position: { x: 0, y: 400 }, data: { name: "A-5" } },
-//   { id: "DB6", type: "db", position: { x: 0, y: 470 }, data: { name: "A-6" } },
-//   { id: "DB7", type: "db", position: { x: 0, y: 540 }, data: { name: "A-7" } },
-//   { id: "DB8", type: "db", position: { x: 0, y: 610 }, data: { name: "A-8" } },
-  
-
-//   // Rack A
-//   { id: "A-1", type: "rack", position: { x: 100, y: 0 }, data: { name: "A-1", current: 0.6 } },
-//   { id: "A-2", type: "rack", position: { x: 190, y: 0 }, data: { name: "A-2", current: 0.6 } },
-//   { id: "A-2", type: "rack", position: { x: 190, y: 0 }, data: { name: "A-2", current: 0.6 } },
-  
-// ];
-
-// export const floor4Edges = [
-//   { id: "e1", source: "DB1", target: "A-1", type: "smoothstep" },
-//   { id: "e2", source: "DB1", target: "A-2", type: "smoothstep" },
-// ];
-
 export const dbs = [
   { id: "DB1", name: "DB1", x: 1200, y: 100, status: "Active" },
   { id: "DB2", name: "DB2", x: 1200, y: 200, status: "Active" },
@@ -84,21 +60,63 @@ export const racks = [
   { id: "A-10",name:"A-10", x: 1000,y: 750, current: 0.50, status: "normal" }
 ];
 
-export const connections = [
-  // DB1 - Rack A
-  { dbId: "DB1", rackId: "A-1" },
-  { dbId: "DB1", rackId: "A-2" },
-  { dbId: "DB1", rackId: "A-3" },
+// db - rack => show detail info
+export const dbRackConnections = [
+  {
+    dbId: "DB1",
+    racks: [
+      {
+        rackId: "A-1",
+        status: "normal",
+        lines: [
+          { voltage: "100V", current: 12.3 },
+          { voltage: "200V", current: 8.4 }
+        ]
+      },
+      {
+        rackId: "A-2",
+        status: "warning",
+        lines: [
+          { voltage: "100V", current: 15.1 }
+        ]
+      }
+    ]
+  },
 
-  // DB2 - Rack B
-  { dbId: "DB2", rackId: "B-1" },
-  { dbId: "DB2", rackId: "B-2" },
+  {
+    dbId: "DB2",
+    racks: [
+      {
+        rackId: "B-1",
+        status: "error",
+        lines: [
+          { voltage: "100V", current: 18.5 },
+          { voltage: "200V", current: 14.2 },
+          { voltage: "300V", current: 9.1 }
+        ]
+      },
+      {
+        rackId: "B-2",
+        status: "normal",
+        lines: [
+          { voltage: "200V", current: 6.8 }
+        ]
+      }
+    ]
+  },
 
-  // DB3 - Rack C
-  { dbId: "DB3", rackId: "C-1" },
-
-  // DB4 - Rack D
-  { dbId: "DB4", rackId: "D-1" }
+  {
+    dbId: "DB3",
+    racks: [
+      {
+        rackId: "C-1",
+        status: "normal",
+        lines: [
+          { voltage: "100V", current: 10.2 }
+        ]
+      }
+    ]
+  }
 ];
 
 

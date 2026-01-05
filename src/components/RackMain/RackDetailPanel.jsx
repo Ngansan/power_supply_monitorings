@@ -1,7 +1,7 @@
 import { useState, useMemo } from "react";
 import "../../styles/RackDetailPanel.css";
 import { fakeRackData, generateFakeTableData } from "../../utils/fakeRackData";
-import "../../styles/RackDataTable.css";
+// import "../../styles/RackDataTable.css";
 import RackCurrentGraph from "./RackCurrentGraph";
 import RackCurrentLog from "./RackCurrentLog";
 import RackEnergyChart from "./RackEnergyChart";
@@ -19,7 +19,7 @@ function RackDetailPanel({rack, onClose}){
     const [activeTab, setActiveTab] = useState("current");
     const [view, setView] = useState("graph");
 
-    const tabData = fakeRackData[activeTab];
+    // const tabData = fakeRackData[activeTab];
     // para for log table
     const currentData = useMemo(() => {
         return generateFakeTableData(24);

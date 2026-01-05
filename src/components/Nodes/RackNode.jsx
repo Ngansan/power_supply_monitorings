@@ -1,4 +1,6 @@
+
 import { rackMeta } from "../RackMain/Racks";
+
 
 function RackNode({data, onClick}){
     return(
@@ -15,7 +17,6 @@ function RackNode({data, onClick}){
                 下限警報: ${rackMeta.下限警報}
                 `}
         >
-            
             <div className="rack-name">{data.name}</div>
             <div className="rack-current">{data.current}A</div>
         </div>

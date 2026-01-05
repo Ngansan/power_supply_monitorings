@@ -1,28 +1,20 @@
 import { useState } from "react";
-// import { allEdges } from "./MockData";
 import "../../styles/LapMap.css";
 import "../../styles/node_connection.css";
 
 import RackNode from "../Nodes/RackNode";
 import DBNode from "../Nodes/DBNode";
-import ConnectionLines from "../Nodes/ConnectionLines";
+import ConnectionLines from "./ConnectionLines";
 import RackDetailPanel from "../RackMain/RackDetailPanel";
 import { rackLogs } from "../RackMain/RackLogs";
 import DBModal from "../Distribution Board/DBModal";
-import { dbRackConnections } from "../../utils/floor4_connection";
-// import { dbs, racks } from "../Layout/floor4_layout";
+import { dbRackConnections } from "../Layout/floor4_layout";
+// import { dbRackConnections } from "../../utils/floor4_connection";
 
 
-function LapMap({dbs, racks, connections}){
+function LapMap({dbs, racks, connections, workdesks, floorId}){
     const [selectedDB, setSelectedDB] = useState(null);
     const [selectedRack, setSelectedRack] = useState(null);
-
-    // const onClickDB = (id) => {
-    //     console.log("Selected DB:", id);
-    //     setSelectedDB(prev => (prev === id ? null : id));
-    // };
-    //console.log("selectedDB value:", selectedDB, typeof selectedDB);
-
     return(
         <div className="lap-map" style={{position: "relative"}}>
             {dbs.map(db => (
@@ -33,7 +25,6 @@ function LapMap({dbs, racks, connections}){
                     onClick={(id) => setSelectedDB(prev => (prev === id ? null : id))}
                 />
             ))}
-
             {racks.map((rack) => (
                 <RackNode 
                     key={rack.id} 
@@ -41,14 +32,12 @@ function LapMap({dbs, racks, connections}){
                     onClick={() => setSelectedRack(rack)}
                 />
             ))}
-
             <ConnectionLines
                 selectedDB={selectedDB}
                 connections={connections}
                 dbs={dbs}
                 racks={racks}
             />
-
             {selectedRack && (
                 <RackDetailPanel
                     rack={selectedRack}
@@ -60,6 +49,7 @@ function LapMap({dbs, racks, connections}){
             {selectedDB && (
                 <DBModal
                     dbId={selectedDB}
+                    floorId={floorId}
                     onClose={() => setSelectedDB(null)}
                     connections={dbRackConnections}
                 />

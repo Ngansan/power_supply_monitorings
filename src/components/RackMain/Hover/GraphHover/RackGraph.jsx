@@ -1,4 +1,4 @@
-import { rackLogs } from "./RackLogs";
+import { rackLogs } from "../../RackLogs";
 
 function RackGraph({type}){
     const data = rackLogs[type] || [];

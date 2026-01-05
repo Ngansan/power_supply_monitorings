@@ -8,6 +8,5 @@ function DBNode({data, selected, onClick}){
             <div className="db-status">Status: {data.status}</div>
         </div>
     )
-
 }
 export default DBNode;
