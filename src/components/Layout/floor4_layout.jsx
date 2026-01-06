@@ -1,5 +1,5 @@
 export const dbs = [
-  { id: "DB1", name: "DB1", x: 1200, y: 100, status: "Active" },
+  { id: "4N-1", name: "4N-1", x: 1200, y: 100, status: "Active" },
   { id: "DB2", name: "DB2", x: 1200, y: 200, status: "Active" },
   { id: "DB3", name: "DB3", x: 1200, y: 300 , status: "Active" },
   { id: "DB4", name: "DB4", x: 1200, y: 400 , status: "Active" },
@@ -48,7 +48,7 @@ export const racks = [
   { id: "B-10",name:"B-10", x: 1000,y: 550,current: 0.42, status: "normal" },
 
   // A ROW 
-  { id: "A-1", name: "A-1", x: 100, y: 750, current: 0.50, status: "normal" },
+  { id: "A-1", name: "1", x: 100, y: 750, current: 0.50, status: "normal" },
   { id: "A-2", name: "A-2", x: 200, y: 750, current: 0.52, status: "normal" },
   { id: "A-3", name: "A-3", x: 300, y: 750, current: 0.55, status: "normal" },
   { id: "A-4", name: "A-4", x: 400, y: 750, current: 0.60, status: "warning" },

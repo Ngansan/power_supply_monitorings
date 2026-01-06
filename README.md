@@ -68,3 +68,106 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+1-Test SNMP trong snmp_test/
+2️-Viết collector → lưu DB
+3️-API đọc DB
+4-Frontend fetch API
+5️-SVG render
+
+I. Thông tin cần lấy từ máy remote
+- IP thiết bị (DB / PDU)
+- SNMP version (v2c / v3)
+- Community (hoặc user/pass v3)
+- SNMP port (thường 161)
+- MIB file từ vendor
+- Biết thiết bị có bao nhiêu port / line
+
+II. Setup env(WSL on VS Code)
+wsl --install  => instal wsl ubuntu
+
+Tools:
+sudo apt update
+sudo apt install snmp python3-pip python3-venv
+
+
+Check SNMP Connection
+Device ping: ping....
+Test SNMP: snmpwalk -v2c -c public 192.168.x.x
+=> OID -> right(not seen -> check again)
+
+Neccessary OID:
+- Current
+- Voltage
+- Load
+- Port index
+
+=> Using MIB file or snmpwalk
+
+III. Write SNMP collector by python
+1/ Setup env(create a new folder "snmp_test")
+cd snmp_test
+python3 -m venv venv
+source venv/bin/activate
+pip install pysnmp apscheduler
+2/ Test SNMP Get
+snmp_get(ip, oid)
+3/Polling each 1 min
+SNMP → parse → normalize data
+
+
+IV. Design and saving database
+V. After all -> create backend folder
+cd backend
+python3 -m venv venv
+source venv/bin/activate
+pip install flask pysnmp sqlalchemy
+
+
+
+
+
+
+Viết collector mẫu hoàn chỉnh
+
+Review DB schema
+
+Thiết kế API response chuẩn cho UI
+
+Giúp bạn mock data để dev UI song song
+Viết backend skeleton sẵn chạy được
+
+Tạo API mẫu cho UI
+
+Hướng dẫn chạy đồng thời FE + BE
+
+
+lab-power-monitor/
+├── snmp_test/
+│   ├── venv/
+│   ├── test_snmp_get.py
+│   └── README.md
+│
+├── backend/
+│   ├── venv/
+│   ├── app/
+│   ├── requirements.txt
+│   └── run.py
+│
+├── frontend/
+│   └── ...
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
