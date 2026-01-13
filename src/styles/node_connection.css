@@ -32,11 +32,13 @@
   box-shadow: 0 0 6px rgba(0,0,0,0.6);
 }
 
-.rack-name {
+.rack-name,
+.workdesk-name {
   font-weight: 600;
 }
 
-.rack-current {
+.rack-current,
+.workdesk-current {
   font-size: 13px;
   font-weight: bold;
 }
@@ -58,6 +60,23 @@
 .rack:hover {
   transform: scale(1.05);
   z-index: 10;
+}
+
+.workdesk {
+  position: absolute;
+  width: 90px;
+  height: 40px;
+  background: #020617;
+  border-radius: 6px;
+  color: #e5e7eb;
+  font-size: 12px;
+  text-align: center;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 6px 4px;
+  box-shadow: 0 0 6px rgba(0,0,0,0.6);
 }
 
 
