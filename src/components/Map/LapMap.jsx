@@ -7,14 +7,17 @@ import DBNode from "../Nodes/DBNode";
 import ConnectionLines from "./ConnectionLines";
 import RackDetailPanel from "../RackMain/RackDetailPanel";
 import { rackLogs } from "../RackMain/RackLogs";
-import DBModal from "../Distribution Board/DBModal";
-import { dbRackConnections } from "../Layout/floor4_layout";
+import DBModal from "../Distribution_Board/DBModal";
+import { dbRackConnections_4 } from "../Layout/floor4_layout";
+import { GRID } from "../../constants/Grid";
+import WorkdeskNode from "../Nodes/WorkdeskNode";
 // import { dbRackConnections } from "../../utils/floor4_connection";
 
 
-function LapMap({dbs, racks, connections, workdesks, floorId}){
-    const [selectedDB, setSelectedDB] = useState(null);
+function LapMap({dbs=[], racks=[], workdesks=[], connections=[], floorId=[]}){
+    const [selectedDB, setSelectedDB]= useState(null);
     const [selectedRack, setSelectedRack] = useState(null);
+    const [selectedWorkdesk, setSelectedWorkdesk] = useState(null);
     return(
         <div className="lap-map" style={{position: "relative"}}>
             {dbs.map(db => (
@@ -23,6 +26,11 @@ function LapMap({dbs, racks, connections, workdesks, floorId}){
                     data={db}
                     selected={selectedDB === db.id}
                     onClick={(id) => setSelectedDB(prev => (prev === id ? null : id))}
+                    style={{
+                        position: "absolute",
+                        top: db.row * GRID.CELL,
+                        left: db.col * GRID.CELL
+                    }}
                 />
             ))}
             {racks.map((rack) => (
@@ -30,6 +38,23 @@ function LapMap({dbs, racks, connections, workdesks, floorId}){
                     key={rack.id} 
                     data={rack}
                     onClick={() => setSelectedRack(rack)}
+                    style={{
+                        position: "absolute",
+                        top: rack.row * GRID.CELL,
+                        left: rack.col * GRID.CELL
+                    }}
+                />
+            ))}
+            {workdesks.map((workdesk) => (
+                <WorkdeskNode
+                    key={workdesk.id} 
+                    data={workdesk}
+                    onClick={() => setSelectedWorkdesk(workdesk)}
+                    style={{
+                        position: "absolute",
+                        top: workdesk.row * GRID.CELL,
+                        left: workdesk.col * GRID.CELL
+                    }}
                 />
             ))}
             <ConnectionLines
@@ -51,7 +76,7 @@ function LapMap({dbs, racks, connections, workdesks, floorId}){
                     dbId={selectedDB}
                     floorId={floorId}
                     onClose={() => setSelectedDB(null)}
-                    connections={dbRackConnections}
+                    connections={connections}
                 />
             )}
         </div>

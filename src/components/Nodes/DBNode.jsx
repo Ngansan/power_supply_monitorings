@@ -1,7 +1,7 @@
-function DBNode({data, selected, onClick}){
+function DBNode({data, selected, onClick, style}){
     return(
         <div className={`db ${selected ? "selected": ""}`}
-            style={{top: data.y, left: data.x}}
+            style={style}
             onClick={() => onClick(data.id)}
         >
             <div className="db-name">{data.name}</div>

@@ -1,11 +1,9 @@
-
 import { rackMeta } from "../RackMain/Racks";
 
-
-function RackNode({data, onClick, style}){
+function WorkdeskNode({data, onClick, style}){
     return(
         <div 
-            className={` rack ${data.status}`}
+            className={` workdesk ${data.status}`}
             style={style}
             onClick={() => onClick(data)}
             title={`
@@ -17,9 +15,10 @@ function RackNode({data, onClick, style}){
                 下限警報: ${rackMeta.下限警報}
                 `}
         >
-            <div className="rack-name">{data.name}</div>
-            <div className="rack-current">{data.current}A</div>
+            <div className="workdesk-name">{data.name}</div>
+            <div className="workdesk-current">{data.current}A</div>
         </div>
     )
 }
-export default RackNode;
+
+export default WorkdeskNode;

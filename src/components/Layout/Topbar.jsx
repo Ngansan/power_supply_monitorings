@@ -1,12 +1,38 @@
 import { AppBar, Toolbar, Button } from "@mui/material";
 import { Link } from "react-router-dom";
+import axios from "axios";
+import { useState } from "react";
+import { useEffect } from "react";
 function Topbar(){
+    const [floors, setFloors] = useState([]);
+
+    useEffect(() => {
+        axios.get('/api/floors')
+            .then(response => {
+                setFloors(response.data);
+            })
+            .catch(error => {
+                console.error("Error fetching floors:", error);
+            });
+    }, []);
+
     return(
         <AppBar position="static">
             <Toolbar>
                 <Button color="inherit" LinkComponent={Link} to="/">Dashboard</Button>
-                <Button color="inherit" LinkComponent={Link} to="/floor4">Floor 4</Button>
-                <Button color="inherit" LinkComponent={Link} to="/floor15">Floor 15</Button>
+                <Button color="inherit" LinkComponent={Link} to="/floors/1">Floor 4</Button>
+                <Button color="inherit" LinkComponent={Link} to="/floors/2">Floor 15</Button>
+
+                {/* {floors.map((floor) => (
+                    <Button 
+                        key={floor.floorId}
+                        color="inherit"
+                        LinkComponent={Link}
+                        to={`/floors/${floor.floorId}`}
+                    >
+                        {floor.floorName}
+                    </Button>
+                ))} */}
             </Toolbar>
 
         </AppBar>
