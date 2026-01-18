@@ -7,7 +7,7 @@ function Topbar(){
     const [floors, setFloors] = useState([]);
 
     useEffect(() => {
-        axios.get('/api/floors')
+        axios.get('/api/floors/')
             .then(response => {
                 setFloors(response.data);
             })
@@ -21,18 +21,8 @@ function Topbar(){
             <Toolbar>
                 <Button color="inherit" LinkComponent={Link} to="/">Dashboard</Button>
                 <Button color="inherit" LinkComponent={Link} to="/floors/1">Floor 4</Button>
-                <Button color="inherit" LinkComponent={Link} to="/floors/2">Floor 15</Button>
-
-                {/* {floors.map((floor) => (
-                    <Button 
-                        key={floor.floorId}
-                        color="inherit"
-                        LinkComponent={Link}
-                        to={`/floors/${floor.floorId}`}
-                    >
-                        {floor.floorName}
-                    </Button>
-                ))} */}
+                <Button color="inherit" LinkComponent={Link} to="/floors/2?zone=left">Floor 15-left</Button>
+                <Button color="inherit" LinkComponent={Link} to="/floors/2?zone=right">Floor 15-right</Button>
             </Toolbar>
 
         </AppBar>

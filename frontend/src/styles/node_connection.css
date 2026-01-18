@@ -43,6 +43,11 @@
   font-weight: bold;
 }
 
+.workdesk.small { width: 20px }
+.workdesk.medium { width: 30px }
+.workdesk.large { width: 40px }
+
+
 /* Status */
 .rack.normal {
   border: 2px solid #22c55e;

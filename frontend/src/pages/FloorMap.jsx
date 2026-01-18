@@ -1,19 +1,25 @@
-import {useParams} from "react-router-dom";
+import {useParams, useSearchParams} from "react-router-dom";
 import LapMap from "../components/Map/LapMap";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
 function FloorMap() {
     const {floorId} = useParams();
+    const [searchParams] = useSearchParams();
+    const zone = searchParams.get("zone");
     const [floor, setFloor] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+
+    const url = zone
+    ? `/api/floors/${floorId}?zone=${zone}`
+    : `/api/floors/${floorId}`;
 
     useEffect(() => {
         const fetchFloor = async () => {
             try {
                 setLoading(true);
-                const response = await axios.get(`/api/floors/${floorId}`);
+                const response = await axios.get(url);
                 setFloor(response.data);
             } catch (err) {
                 console.error("Error fetching floor data:", err);
@@ -24,7 +30,7 @@ function FloorMap() {
         };
         fetchFloor();
         console.log("Fetched floor data for floorId:", floorId);
-    }, [floorId]);
+    }, [floorId, zone]);
 
     if (loading) {
         return <div>Loading...</div>;

@@ -3,7 +3,7 @@ import { rackMeta } from "../RackMain/Racks";
 function WorkdeskNode({data, onClick, style}){
     return(
         <div 
-            className={` workdesk ${data.status}`}
+            className={` workdesk ${data.type}`}
             style={style}
             onClick={() => onClick(data)}
             title={`

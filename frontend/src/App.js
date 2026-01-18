@@ -10,6 +10,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Dashboard/>}></Route>
         <Route path="/floors/:floorId" element={<FloorMap />} />
+        {/* <Route path="/floors/:floorId/:zone" element={<FloorMap />} /> */}
       </Routes>
     </BrowserRouter>
   );
