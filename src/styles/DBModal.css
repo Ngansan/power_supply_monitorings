@@ -1,0 +1,55 @@
+.modal-overlay-DB {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+  
+}
+
+.modal-box-DB {
+  width: 600px;
+  max-height: 80vh;
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  overflow-y: auto;
+  color: black
+}
+
+.rack-card {
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 10px;
+  margin-bottom: 12px;
+}
+
+.rack-header-DB {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+
+.status.normal { color: green; }
+.status.warning { color: orange; }
+.status.error { color: red; }
+
+.line-table-DB {
+  width: 100%;
+  border-collapse: collapse;
+  
+}
+
+.line-table-DB th,
+.line-table-DB td {
+  border-bottom: 1px solid #0b0b0b;
+  padding: 6px;
+  text-align: center;
+}
+
+.close-btn {
+  margin-top: 10px;
+  padding: 6px 14px;
+}

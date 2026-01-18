@@ -1,0 +1,58 @@
+from pysnmp.hlapi import *
+from pysnmp.smi import builder, view, compiler
+
+TARGET = '192.168.1.10'
+COMMUNITY = 'public'
+BASE_OID = '1.3.6.1.4.1.xxx'
+
+# --- Load MIB ---
+mibBuilder = builder.MibBuilder()
+compiler.addMibCompiler(mibBuilder, sources=['file:///./mibs'])
+mibBuilder.loadModules('KW-CU')
+mibView = view.MibViewController(mibBuilder)
+
+def walk():
+    data = []
+    for (errorIndication,
+         errorStatus,
+         errorIndex,
+         varBinds) in nextCmd(
+            SnmpEngine(),
+            CommunityData(COMMUNITY),
+            UdpTransportTarget((TARGET, 161)),
+            ContextData(),
+            ObjectType(ObjectIdentity(BASE_OID)),
+            lexicographicMode=False):
+
+        if errorIndication:
+            raise Exception(errorIndication)
+
+        for oid, val in varBinds:
+            # resolve symbolic name from MIB
+            symbol, index = mibView.getNodeName(oid)
+            name = symbol[-1]
+            idx = index[0] if index else None
+
+            data.append({
+                "name": name,
+                "index": idx,
+                "value": str(val)
+            })
+    return data
+
+def normalize(raw):
+    cus = {}
+
+    for item in raw:
+        idx = item["index"]
+        cus.setdefault(idx, {})[item["name"]] = item["value"]
+
+    return [
+        {"kwcuIndex": str(idx), **fields}
+        for idx, fields in cus.items()
+    ]
+
+if __name__ == "__main__":
+    raw = walk()
+    result = normalize(raw)
+    print(result)
