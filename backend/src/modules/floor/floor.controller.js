@@ -1,10 +1,13 @@
-import * as floorService from "./floor.service.js";
+import * as floorService  from "./floor.service.js";
 
 export const getFloorMap = async (req, res, next) => {
     try {
-        const floorId = Number(req.params.floorId);
-        console.log("floorId:", floorId);
-        const data = await floorService.getFloorMap(floorId);
+        const {floorId} = req.params;
+        const {zone} = req.query;
+        console.log("floorId:", floorId, "zone:", zone);
+
+        const data = await floorService.getFloorMap(Number(floorId), zone)
+        console.log("floorId:", floorId)
 
         if (!data) {
             return res.status(404).json({ message: "Floor not found" });
